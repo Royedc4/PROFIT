@@ -18,7 +18,7 @@ abrir_logo()
 formato_dolar = .F.
 ttip_doc = "VXXX"
 *depurador("AD",.t.)
-*** VerificaciÃ³n de que existan las variables pÃºblicas para IVA, RIF y NIT  (si no existen se asignan)
+*** VerificaciÃƒÂ³n de que existan las variables pÃƒÂºblicas para IVA, RIF y NIT  (si no existen se asignan)
 If TYPE('TL_IVA')='U'
 	Public TL_IVA
 	TL_IVA='I.V.A.'
@@ -52,7 +52,7 @@ Do CASE
 	Case rtipo = 2
 		ttabla = "Cotiz_c."
 		tfrom  = "Cotiz_c"
-		tnro   = "CotizaciÃ³n:"
+		tnro   = "CotizaciÃƒÂ³n:"
 		ttabla_reng = "reng_cac."
 		tfrom_reng = "reng_cac"
 		ttabla1   = "CLIENTES."
@@ -106,7 +106,7 @@ Do CASE
 	Case rtipo = 8
 		ttabla = "Cotiz_p."
 		tfrom  = "Cotiz_p"
-		tnro   = "CotizaciÃ³n de Proveedor:"
+		tnro   = "CotizaciÃƒÂ³n de Proveedor:"
 		ttabla_reng = "reng_cdp."
 		tfrom_reng = "reng_cdp"
 		ttabla1   = "PROV."
@@ -123,7 +123,7 @@ Do CASE
 	Case rtipo = 10
 		ttabla = "Not_rec."
 		tfrom  = "Not_rec"
-		tnro   = "Nota de RecepciÃ³n:"
+		tnro   = "Nota de RecepciÃƒÂ³n:"
 		ttabla_reng = "reng_ndr."
 		tfrom_reng = "reng_ndr"
 		ttabla1   = "PROV."
@@ -389,7 +389,7 @@ IF rtipo <=  6  OR rtipo = 12   && select de ventas
 
 		ENDIF
 		
-&& cÃ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702	
+&& cÃƒÂ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702	
 	IF (rtipo=1 OR rtipo= 3 OR rtipo = 4 OR rtipo = 5)
 		ttipo = IIF(rtipo=3,"E","S")
 		tbuscark4  = IIF(ttipo="E",ttip_doc,tinicial)
@@ -479,7 +479,7 @@ IF rtipo <=  6  OR rtipo = 12   && select de ventas
 			ORDER BY 1,2,3;
 			INTO CURSOR vreportes
    	ENDIF		
-	&& fin cÃ³digo de manejo seriales
+	&& fin cÃƒÂ³digo de manejo seriales
 	
 	ELSE
 
@@ -663,7 +663,7 @@ rtipo=rtipo_aux
 				AND &ttabla.&tcampo = &ttabla3.&tcampo;
 				GROUP BY 1,2,3 ORDER BY 1,2,3
 		ENDIF
-			 && cÃ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
+			 && cÃƒÂ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
 	
 	 IF (rtipo=1 OR rtipo= 3 OR rtipo = 4 OR rtipo = 5)
 		ttipo = IIF(rtipo=3,"E","S")
@@ -750,7 +750,7 @@ rtipo=rtipo_aux
 			ORDER BY 1,2,3;
 			INTO CURSOR vreportes	
 	 ENDIF	
-	&& fin dÃ³digo de manejo seriales	
+	&& fin dÃƒÂ³digo de manejo seriales	
 	ENDIF
 ELSE
 	IF rtipo = 9
@@ -857,7 +857,7 @@ ELSE
 				ORDER BY 1,2,3
 		ENDIF
 		
-&& cÃ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
+&& cÃƒÂ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
 	 IF (rtipo = 7 OR rtipo = 9 OR rtipo = 10)
 		ttipo = IIF(rtipo=9,"S","E")
 		tbuscark4  = IIF(ttipo="E",ttip_doc,tinicial)
@@ -946,7 +946,7 @@ ELSE
 			ORDER BY 1,2,3;
 			INTO CURSOR vreportes	
 	 ENDIF	
-	&& fin dÃ³digo de manejo seriales	
+	&& fin dÃƒÂ³digo de manejo seriales	
 	ELSE
 		
 		SELECT &ttabla.fact_num,;
@@ -1107,7 +1107,7 @@ ELSE
 				AND &ttabla.fact_num BETWEEN ?tdesde[1] AND ?thasta[1];
 				GROUP BY 1,2,3 ORDER BY 1,2,3
 		ENDIF
-	 && cÃ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
+	 && cÃƒÂ³digo para buscar los seriales de los renglones q tienen seriales asignados	- GAM 190702
 	
 	 IF (rtipo = 7 OR rtipo = 9 OR rtipo = 10)
 		ttipo = IIF(rtipo=9,"S","E")
@@ -1192,7 +1192,7 @@ ELSE
 			ORDER BY 1,2,3;
 			INTO CURSOR vreportes	
 	 ENDIF	
-	&& fin dÃ³digo de manejo seriales	
+	&& fin dÃƒÂ³digo de manejo seriales	
 	
 	ENDIF
 ENDIF
@@ -1267,7 +1267,7 @@ SELECT v.* , ALLTRIM(v.art_des)+IIF(v.tipo_imp='6'," (E)",SPACE(124)) AS art_1,;
 IF rtipo = 0 OR rtipo = 1 OR rtipo = 3 OR rtipo = 4 OR rtipo = 5 OR rtipo = 6 && Tipo factura, nota de entrega y despacho, pedido y dev de cli
 	lresultado = marca_fact_imp(.F.,ttip_doc)
 	IF lresultado <> 0
-		=MESSAGEBOX(IIF(rtipo=6,"El ","La ")+SUBSTR(alltrim(tnro),1,LEN(alltrim(tnro))-1)+" NÂº '" + ALLTRIM(STR(lresultado)) + "' ya fue impres"+IIF(rtipo=6,"o.","a."),16,business_loc)
+		=MESSAGEBOX(IIF(rtipo=6,"El ","La ")+SUBSTR(alltrim(tnro),1,LEN(alltrim(tnro))-1)+" NÃ‚Âº '" + ALLTRIM(STR(lresultado)) + "' ya fue impres"+IIF(rtipo=6,"o.","a."),16,business_loc)
 		llcontinue = .F.
 	ENDIF
 ENDIF
@@ -1285,7 +1285,7 @@ fact_num2=vreportes.fact_num
 rnum_doc2=vreportes.rnum_doc
 tipo2=vreportes.tipo
 
-CREATE CURSOR PIVOT (numBulto I, totalBultos I, fact_num N(4), reng_neto N(4), dir_ent2 C(50), cli_des C(50), rnum_doc I, tipo C(6))
+CREATE CURSOR PIVOT (numBulto I, totalBultos I, fact_num N(8), reng_neto N(8), dir_ent2 C(100), cli_des C(100), rnum_doc I, tipo C(6))
 iterator=0
 
 DO WHILE iterator<canBultos
@@ -1305,3 +1305,4 @@ ENDDO
 SELECT * FROM PIVOT INTO CURSOR VREPORTES
 		*reng_num WITH VREPORTES1.reng_num IN TEMP_SERIAL
 RETURN llcontinue
+ENDPROC
